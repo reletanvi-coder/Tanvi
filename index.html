@@ -1,0 +1,834 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Tanvi Rele</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Spectral:wght@500;600&display=swap">
+<style>
+/* Layout: one 960px reading column under a sticky nav; sections stacked; detail opens on click (role accordions, tabs). Single light look by design: cream ground, warm off-white cards, walnut brown accent, tan markers. */
+:root {
+  color-scheme: light;
+  --bg: #f5efe4;
+  --surface: #fcf8f1;
+  --ink: #2b2118;
+  --muted: #6c5f50;
+  --line: #e1d6c5;
+  --accent: #6b4a2f;
+  --accent-ink: #fdfaf4;
+  --accent-soft: #eee4d4;
+  --tan: #b08a5e;
+  --ok: #6c7a45;
+  --font-display: "Spectral", "Iowan Old Style", Georgia, serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --step--1: 0.8125rem;
+  --step-0: 1rem;
+  --step-1: 1.1875rem;
+  --step-2: 1.5rem;
+  --step-3: 2.125rem;
+  --step-4: clamp(2.5rem, 7vw, 4rem);
+  --radius: 10px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+@media (max-width: 860px) { html { scroll-padding-top: 104px; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+body::before {
+  content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px);
+  z-index: 10; background: var(--bg);
+}
+a { color: var(--accent); text-underline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 600; line-height: 1.15; text-wrap: balance; margin: 0; }
+p { margin: 0; }
+ul, ol { margin: 0; padding: 0; }
+button { font: inherit; }
+
+.wrap {
+  max-width: 960px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.label {
+  font-family: var(--font-mono); font-size: var(--step--1); font-weight: 500;
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted);
+}
+
+/* Nav */
+.nav {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+.nav-inner { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 12px; }
+.brand { font-family: var(--font-display); font-weight: 600; font-size: var(--step-1); color: var(--ink); text-decoration: none; }
+.nav-links { display: flex; gap: 2px; list-style: none; }
+.nav-links a {
+  display: block; padding: 6px 10px; border-radius: 6px; color: var(--muted);
+  text-decoration: none; font-size: 0.9rem; font-weight: 500;
+}
+.nav-links a:hover { color: var(--ink); background: var(--accent-soft); }
+.nav-links a.active { color: var(--accent); background: var(--accent-soft); }
+@media (max-width: 860px) {
+  .nav-inner { flex-direction: column; align-items: stretch; gap: 4px; padding-block: 10px 6px; }
+  .nav-links { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; margin: 0 -8px; padding: 0 28px 4px 8px; -webkit-mask-image: linear-gradient(90deg, #000 82%, transparent); mask-image: linear-gradient(90deg, #000 82%, transparent); }
+  .nav-links::-webkit-scrollbar { display: none; }
+  .nav-links a { white-space: nowrap; padding: 6px 10px; }
+}
+
+/* Hero */
+.hero { padding-block: 64px 40px; display: grid; gap: 22px; }
+.hero h1 { font-size: var(--step-4); letter-spacing: -0.01em; }
+.degrees { display: grid; gap: 2px; }
+.hero .role-line { font-size: var(--step-1); color: var(--muted); }
+.rule { height: 3px; width: 120px; border-radius: 2px; background: linear-gradient(90deg, var(--accent) 0 62%, var(--tan) 62% 100%); }
+.hero .intro { max-width: 62ch; font-size: 1.0625rem; }
+.status { display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 0.95rem; color: var(--muted); }
+.status span { display: inline-flex; align-items: center; gap: 8px; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--ok); flex: none; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 18px; border-radius: 8px;
+  font-weight: 500; font-size: 0.95rem; text-decoration: none; cursor: pointer;
+  border: 1px solid var(--line); background: var(--surface); color: var(--ink);
+  transition: border-color .15s, background .15s;
+}
+.btn:hover { border-color: var(--accent); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.btn.primary:hover { filter: brightness(1.08); }
+.ext::after { content: "↗"; font-size: 0.85em; }
+
+/* Area cards */
+.areas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; padding-bottom: 56px; }
+@media (max-width: 760px) { .areas { grid-template-columns: 1fr; } }
+.area {
+  display: grid; gap: 8px; align-content: start; padding: 20px; border-radius: var(--radius);
+  background: var(--surface); border: 1px solid var(--line); color: var(--ink); text-decoration: none;
+  cursor: pointer; transition: border-color .15s, box-shadow .15s;
+}
+.area:hover { border-color: var(--accent); box-shadow: 0 4px 14px rgba(107, 74, 47, 0.10); }
+.area-top { display: flex; justify-content: space-between; gap: 8px; }
+.area h3 { font-size: var(--step-1); }
+.area .where { font-size: 0.875rem; color: var(--muted); }
+.area p { font-size: 0.9375rem; }
+.area .go { font-size: 0.9rem; font-weight: 500; color: var(--accent); margin-top: 4px; }
+
+/* Sections */
+section { padding-block: 56px; border-top: 1px solid var(--line); }
+.sec-head { display: grid; gap: 8px; margin-bottom: 28px; }
+.sec-head h2 { font-size: var(--step-3); }
+.sec-head p { color: var(--muted); max-width: 62ch; }
+
+/* Plain meta text (not clickable) */
+.meta { font-size: 0.9rem; color: var(--muted); }
+.meta b { font-weight: 500; color: var(--ink); }
+
+/* Experience */
+.timeline-tools { display: flex; justify-content: flex-end; margin-bottom: 10px; }
+.linkbtn { background: var(--surface); border: 1px solid var(--line); color: var(--ink); font-weight: 500; font-size: 0.875rem; cursor: pointer; padding: 6px 14px; border-radius: 999px; }
+.linkbtn:hover { border-color: var(--accent); }
+.timeline { list-style: none; display: grid; gap: 12px; }
+.role { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); transition: border-color .15s; }
+.role:hover, .role:has(details[open]) { border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); }
+.role-head { display: block; list-style: none; cursor: pointer; border-radius: var(--radius); padding: 18px; }
+.role-head::-webkit-details-marker { display: none; }
+.role-head::marker { content: ""; }
+.role-grid { display: grid; grid-template-columns: 172px minmax(0, 1fr) 28px; gap: 16px; align-items: start; }
+.role-date { font-family: var(--font-mono); font-size: var(--step--1); color: var(--muted); padding-top: 4px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.role-main { display: grid; gap: 2px; min-width: 0; }
+.role-title { font-family: var(--font-display); font-size: var(--step-1); font-weight: 600; }
+.role-org { font-size: 0.9375rem; color: var(--muted); }
+.role-sum { font-size: 0.9375rem; margin-top: 6px; }
+.chev {
+  width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--line); position: relative; margin-top: 2px;
+  background: var(--bg);
+}
+.chev::before, .chev::after { content: ""; position: absolute; left: 8px; top: 12.5px; width: 10px; height: 1.5px; background: var(--accent); border-radius: 1px; transition: transform .2s; }
+.chev::after { transform: rotate(90deg); }
+details[open] > .role-head .chev::after { transform: rotate(0deg); }
+.role-head:hover .chev { border-color: var(--accent); }
+.role-body { padding: 0 18px 22px calc(18px + 172px + 16px); display: grid; gap: 18px; }
+@media (max-width: 640px) {
+  .role-grid { grid-template-columns: minmax(0, 1fr) 28px; gap: 8px 12px; }
+  .role-date { grid-column: 1; grid-row: 1; padding-top: 0; }
+  .role-main { grid-column: 1; grid-row: 2; }
+  .chev { grid-column: 2; grid-row: 1 / span 2; }
+  .role-body { padding-left: 18px; }
+}
+.bullets { list-style: none; display: grid; gap: 8px; max-width: 66ch; }
+.bullets li { position: relative; padding-left: 18px; }
+.bullets li::before { content: ""; position: absolute; left: 2px; top: 0.66em; width: 5px; height: 5px; border-radius: 50%; background: var(--tan); }
+.callout {
+  border-left: 3px solid var(--tan); padding: 10px 14px; background: var(--accent-soft);
+  border-radius: 0 8px 8px 0; max-width: 66ch; font-size: 0.9375rem;
+}
+.role-link { font-weight: 500; }
+
+/* Scale-up path */
+.scale { display: flex; align-items: flex-end; gap: 12px; flex-wrap: wrap; }
+.vessel { display: grid; gap: 6px; justify-items: center; text-align: center; }
+.vessel .shape { border: 2px solid var(--accent); border-radius: 4px 4px 10px 10px; background: linear-gradient(to top, var(--accent-soft) 70%, transparent 70%); }
+.vessel .v-name { font-size: 0.8125rem; font-weight: 500; }
+.vessel .v-vol { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); }
+.scale .arrow { color: var(--muted); padding-bottom: 46px; }
+
+/* Tabs */
+.tabs { display: grid; gap: 22px; }
+.tablist { display: flex; gap: 8px; flex-wrap: wrap; }
+.tab {
+  background: var(--surface); border: 1px solid var(--line);
+  padding: 8px 16px; font-weight: 500; font-size: 0.9375rem; color: var(--ink); cursor: pointer;
+  border-radius: 999px; transition: border-color .15s, background .15s;
+}
+.tab:hover { border-color: var(--accent); }
+.tab { user-select: none; }
+.tabs > .panel { display: none; }
+.tab-radio { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; pointer-events: none; }
+#r-t-question:checked ~ #p-question { display: grid; }
+#r-t-question:checked ~ .tablist label[for="r-t-question"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+#r-t-question:focus-visible ~ .tablist label[for="r-t-question"] { outline: 2px solid var(--accent); outline-offset: 3px; }
+#r-t-design:checked ~ #p-design { display: grid; }
+#r-t-design:checked ~ .tablist label[for="r-t-design"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+#r-t-design:focus-visible ~ .tablist label[for="r-t-design"] { outline: 2px solid var(--accent); outline-offset: 3px; }
+#r-t-methods:checked ~ #p-methods { display: grid; }
+#r-t-methods:checked ~ .tablist label[for="r-t-methods"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+#r-t-methods:focus-visible ~ .tablist label[for="r-t-methods"] { outline: 2px solid var(--accent); outline-offset: 3px; }
+#r-s-bio:checked ~ #sp-bio { display: grid; }
+#r-s-bio:checked ~ .tablist label[for="r-s-bio"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+#r-s-bio:focus-visible ~ .tablist label[for="r-s-bio"] { outline: 2px solid var(--accent); outline-offset: 3px; }
+#r-s-clin:checked ~ #sp-clin { display: grid; }
+#r-s-clin:checked ~ .tablist label[for="r-s-clin"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+#r-s-clin:focus-visible ~ .tablist label[for="r-s-clin"] { outline: 2px solid var(--accent); outline-offset: 3px; }
+#r-s-res:checked ~ #sp-res { display: grid; }
+#r-s-res:checked ~ .tablist label[for="r-s-res"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+#r-s-res:focus-visible ~ .tablist label[for="r-s-res"] { outline: 2px solid var(--accent); outline-offset: 3px; }
+#r-s-data:checked ~ #sp-data { display: grid; }
+#r-s-data:checked ~ .tablist label[for="r-s-data"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+#r-s-data:focus-visible ~ .tablist label[for="r-s-data"] { outline: 2px solid var(--accent); outline-offset: 3px; }
+#r-s-qa:checked ~ #sp-qa { display: grid; }
+#r-s-qa:checked ~ .tablist label[for="r-s-qa"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+#r-s-qa:focus-visible ~ .tablist label[for="r-s-qa"] { outline: 2px solid var(--accent); outline-offset: 3px; }
+#r-s-pro:checked ~ #sp-pro { display: grid; }
+#r-s-pro:checked ~ .tablist label[for="r-s-pro"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+#r-s-pro:focus-visible ~ .tablist label[for="r-s-pro"] { outline: 2px solid var(--accent); outline-offset: 3px; }
+.panel { display: grid; gap: 16px; max-width: 70ch; }
+.panel-wide { max-width: none; }
+
+/* Thesis */
+.thesis-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; display: grid; gap: 22px; }
+@media (max-width: 640px) { .thesis-card { padding: 18px; } }
+.thesis-card h3 { font-size: var(--step-2); }
+.pathway { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 0.9rem; }
+.pathway .node { padding: 6px 12px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); }
+.pathway .node.key { border-color: var(--accent); color: var(--accent); font-weight: 600; }
+.pathway .op { color: var(--muted); font-size: 0.875rem; }
+.groups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 520px) { .groups { grid-template-columns: 1fr; } }
+.group { border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; background: var(--bg); display: grid; gap: 2px; }
+.group .g-name { font-family: var(--font-display); font-weight: 600; font-size: var(--step-1); }
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 0.9375rem; min-width: 480px; }
+th, td { text-align: left; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+.steps { list-style: none; display: grid; gap: 0; counter-reset: step; }
+.step { display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: 14px; padding-block: 14px; border-bottom: 1px solid var(--line); }
+.step:last-child { border-bottom: none; }
+.step::before {
+  counter-increment: step; content: counter(step);
+  width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--accent); color: var(--accent);
+  display: grid; place-items: center; font-family: var(--font-mono); font-size: 0.8125rem;
+}
+.step h4 { margin: 0 0 4px; font-size: 1rem; font-weight: 600; display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; }
+.step .who { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); font-weight: 500; }
+.step p { font-size: 0.9375rem; }
+.note { font-size: 0.9rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: 14px; }
+
+/* Skills */
+.skill-list { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 32px; }
+@media (max-width: 600px) { .skill-list { grid-template-columns: 1fr; } }
+.skill-list li { padding: 10px 0 10px 18px; border-bottom: 1px solid var(--line); position: relative; font-size: 0.9625rem; }
+.skill-list li::before { content: ""; position: absolute; left: 2px; top: 1.15em; width: 5px; height: 5px; border-radius: 50%; background: var(--tan); }
+
+/* Languages */
+.langs { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; list-style: none; }
+.lang { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; display: grid; gap: 8px; align-content: start; }
+.lang-top { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+.lang-name { font-weight: 600; }
+.lang-level { font-size: 0.875rem; color: var(--muted); text-align: right; }
+.meter { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; }
+.meter span { height: 5px; border-radius: 3px; background: var(--line); }
+.meter span.on { background: var(--accent); }
+.lang-extra { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); }
+
+/* Education */
+.edu { display: grid; gap: 12px; }
+.edu-item { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; display: grid; gap: 6px; }
+.edu-item h3 { font-size: var(--step-1); }
+.edu-item .where { color: var(--muted); font-size: 0.9375rem; }
+.edu-item .detail { font-size: 0.9375rem; }
+.certs { list-style: none; display: grid; gap: 8px; }
+.certs li { display: flex; gap: 6px 14px; flex-wrap: wrap; align-items: baseline; }
+.certs .issuer { font-family: var(--font-mono); font-size: 0.8125rem; color: var(--muted); min-width: 110px; }
+
+/* Leadership */
+.lead-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; display: grid; gap: 12px; }
+.lead-card h3 { font-size: var(--step-2); }
+.lead-card p { max-width: 66ch; }
+
+/* Contact */
+.contact-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 640px) { .contact-grid { grid-template-columns: 1fr; } }
+.contact-item { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; display: grid; gap: 12px; align-content: start; min-width: 0; }
+.contact-value { font-size: var(--step-1); font-weight: 500; overflow-wrap: anywhere; }
+.contact-row { display: flex; gap: 8px; flex-wrap: wrap; position: relative; }
+.copied { font-size: 0.8125rem; color: var(--ok); min-height: 1.2em; }
+.copied.warn { color: var(--muted); }
+.hero .cv-status { margin-top: -10px; }
+
+footer { border-top: 1px solid var(--line); padding-block: 28px 40px; color: var(--muted); font-size: 0.875rem; }
+</style>
+
+<header class="nav" id="site-nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top">Tanvi Rele</a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#thesis">Thesis</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#languages">Languages</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#leadership">Leadership</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap">
+    <div class="hero">
+      <h1>Tanvi Rele</h1>
+      <div class="degrees"><p class="role-line">MSc Biomedical Sciences</p><p class="role-line">BTech Biotechnology</p></div>
+      <div class="rule" aria-hidden="true"></div>
+      <p class="intro">I work in laboratories where the result depends on how carefully the sample, the process and the data are handled. My experience covers academic cardiovascular research, GMP process development for a monoclonal antibody, and hospital diagnostic laboratories, in the Netherlands, India and Nigeria.</p>
+      <div class="status">
+        <span><i class="dot" aria-hidden="true"></i>Available immediately</span>
+        <span>Based in Maastricht, open to relocation</span>
+      </div>
+      <div class="actions">
+        <a class="btn primary" href="#contact">Contact me</a>
+        <a class="btn ext" href="https://www.linkedin.com/in/tanvi-rele-897ba0221/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a class="btn cv-btn" href="https://drive.google.com/uc?export=download&amp;id=1f9zp9bR7ijim_uSSCD3S-7JJOLHsbGJw" target="_blank" rel="noopener noreferrer">Download CV (PDF)</a>
+      </div>
+      <p class="copied cv-status" aria-live="polite"></p>
+    </div>
+
+    <nav class="areas" aria-label="Areas of experience">
+      <a class="area" href="#role-carim" data-open="role-carim">
+        <div class="area-top"><span class="label">Research</span><span class="label">NL</span></div>
+        <h3>Cardiovascular research</h3>
+        <p class="where">CARIM, Maastricht University</p>
+        <p>Year-long MSc research internship on cardiovascular ageing: imaging data analysis, enzyme assays, histology and statistics.</p>
+        <span class="go">View role →</span>
+      </a>
+      <a class="area" href="#role-ipca" data-open="role-ipca">
+        <div class="area-top"><span class="label">Manufacturing</span><span class="label">IN</span></div>
+        <h3>GMP process development</h3>
+        <p class="where">IPCA Laboratories, Mumbai</p>
+        <p>Upstream scale-up of a monoclonal antibody fed-batch process, from shake flask to a 50&nbsp;L bioreactor.</p>
+        <span class="go">View role →</span>
+      </a>
+      <a class="area" href="#role-euracare" data-open="role-euracare,role-bses">
+        <div class="area-top"><span class="label">Clinical</span><span class="label">NG · IN</span></div>
+        <h3>Clinical diagnostics</h3>
+        <p class="where">Euracare, Lagos · BSES MG Hospital, Mumbai</p>
+        <p>Patient sample handling and quality control in haematology, serology, biochemistry, immunology and microbiology.</p>
+        <span class="go">View roles →</span>
+      </a>
+    </nav>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="label">4 roles · 3 countries</span>
+        <h2>Experience</h2>
+        <p>Research, manufacturing and clinical laboratories, newest first. Select a role to see the detail.</p>
+      </div>
+      <div class="timeline-tools"><button class="linkbtn js-only" id="toggle-all" type="button" hidden>Expand all</button></div>
+      <ol class="timeline">
+
+        <li class="role" id="role-carim">
+          <details class="role-details" id="det-carim">
+          <summary class="role-head"><span class="role-grid">
+            <span class="role-date">Sep 2025 to Jun 2026</span>
+            <span class="role-main">
+              <span class="role-title">Research Intern</span>
+              <span class="role-org">CARIM, Department of Internal Medicine, Maastricht University · Maastricht, NL</span>
+              <span class="role-sum">MSc thesis project on cardiovascular ageing and glyoxalase-1 (GLO1) activity in young versus aged mice.</span>
+            </span>
+            <span class="chev" aria-hidden="true"></span>
+          </span></summary>
+          <div class="role-body" id="body-carim">
+            <ul class="bullets">
+              <li>Analysed all echocardiography, pulse wave velocity and contrast-enhanced ultrasound data in VevoLab and ImageJ/Fiji, after validating 200+ datasets for accuracy.</li>
+              <li>Observed the in vivo imaging and hyperinsulinaemic-euglycaemic clamp procedures.</li>
+              <li>Prepared tissue lysates from snap-frozen tissue, quantified protein by BCA assay and measured GLO1 activity by spectrophotometry on 150+ tissue samples.</li>
+              <li>Processed tissues for histology, from initial processing through paraffin embedding to sectioning.</li>
+              <li>Tracked, stored at −80&nbsp;°C and retrieved 130+ specimens with full traceability.</li>
+              <li>Ran the statistics in GraphPad Prism and Excel: normality testing, outlier detection, t-tests, Mann-Whitney tests, Pearson correlation and linear regression.</li>
+              <li>Led a cross-departmental root cause investigation into results that deviated from expected outcomes, combining a literature review with a comparison against another department using the same method and parameters. Identified a solution and proposed a hypothesis for the discrepancy.</li>
+              <li>Wrote an SOP for a laboratory technique and used it to train new interns, who reproduced the expected results on their first independent attempt.</li>
+              <li>Presented findings to principal investigators.</li>
+            </ul>
+            <p class="meta"><b>Software and instruments:</b> VevoLab · ImageJ/Fiji · GraphPad Prism · Microsoft Excel · microplate reader · UV spectrophotometer</p>
+            <p><a class="role-link" href="#thesis">How the thesis project was set up →</a></p>
+          </div>
+          </details>
+        </li>
+
+        <li class="role" id="role-ipca">
+          <details class="role-details" id="det-ipca">
+          <summary class="role-head"><span class="role-grid">
+            <span class="role-date">Jan 2024 to Jun 2024</span>
+            <span class="role-main">
+              <span class="role-title">Process Development Intern, Upstream Processing</span>
+              <span class="role-org">IPCA Laboratories · Mumbai, IN</span>
+              <span class="role-sum">Final-year BTech project: scaling up a monoclonal antibody-producing mammalian cell culture process in a GMP environment.</span>
+            </span>
+            <span class="chev" aria-hidden="true"></span>
+          </span></summary>
+          <div class="role-body" id="body-ipca">
+            <div>
+              <p class="label" style="margin-bottom:10px">Scale-up path</p>
+              <div class="scale" role="img" aria-label="Scale-up from shake flask to bench-scale bioreactors of 1 to 10 litres, then a 50 litre bioreactor">
+                <div class="vessel"><div class="shape" style="width:30px;height:38px"></div><span class="v-name">Shake flask</span><span class="v-vol">mL scale</span></div>
+                <span class="arrow" aria-hidden="true">→</span>
+                <div class="vessel"><div class="shape" style="width:44px;height:58px"></div><span class="v-name">Bench bioreactors</span><span class="v-vol">1 to 10&nbsp;L</span></div>
+                <span class="arrow" aria-hidden="true">→</span>
+                <div class="vessel"><div class="shape" style="width:64px;height:86px"></div><span class="v-name">Bioreactor</span><span class="v-vol">50&nbsp;L</span></div>
+              </div>
+            </div>
+            <p class="callout">Ran an independent shake flask fed-batch culture from inoculation on day 1 to harvest on day 16.</p>
+            <ul class="bullets">
+              <li>Scaled a fed-batch process from shake flask through bench-scale bioreactors (1 to 10&nbsp;L) to a 50&nbsp;L bioreactor in a BSL2 laboratory.</li>
+              <li>Thawed, passaged, expanded and cryopreserved mammalian suspension cell cultures under strict aseptic technique.</li>
+              <li>Prepared culture media, feeds and inoculum, and set up, sterilised and operated bioreactors, including probe calibration.</li>
+              <li>Monitored and adjusted pH, temperature, dissolved oxygen, aeration and agitation during runs, and tracked viability, osmolality and metabolites.</li>
+              <li>Analysed process data across 1,500+ samples, escalating deviations under GMP protocols.</li>
+              <li>Wrote and reviewed SOPs and batch manufacturing records within an ISO 9001-certified quality system.</li>
+              <li>Carried out environmental monitoring of microbial load in the laboratory, operating room and biosafety cabinets, including in response to non-conformities.</li>
+              <li>Performed equipment calibration, troubleshooting and maintenance.</li>
+              <li>Tracked inventory of consumables and reagents.</li>
+            </ul>
+            <p class="meta"><b>Instruments:</b> Vi-CELL XR · YSI analyser · blood gas analyser · bench-scale bioreactors · 50&nbsp;L bioreactor</p>
+          </div>
+          </details>
+        </li>
+
+        <li class="role" id="role-euracare">
+          <details class="role-details" id="det-euracare">
+          <summary class="role-head"><span class="role-grid">
+            <span class="role-date">May 2023</span>
+            <span class="role-main">
+              <span class="role-title">Clinical QC Intern, Pathology</span>
+              <span class="role-org">Euracare Multi-Specialist Hospital · Lagos, NG</span>
+              <span class="role-sum">Sample handling and diagnostic testing in haematology, serology and biochemistry under GLP.</span>
+            </span>
+            <span class="chev" aria-hidden="true"></span>
+          </span></summary>
+          <div class="role-body" id="body-euracare">
+            <ul class="bullets">
+              <li>Received, processed and registered 200+ patient samples, mainly blood, for haematology, serology and biochemistry under GLP standards.</li>
+              <li>Performed peripheral blood morphology, transfusion cross-matching and urinalysis.</li>
+              <li>Kept 100% data accuracy and full traceability from receipt to result.</li>
+              <li>Explained procedures and turnaround times to patients.</li>
+            </ul>
+          </div>
+          </details>
+        </li>
+
+        <li class="role" id="role-bses">
+          <details class="role-details" id="det-bses">
+          <summary class="role-head"><span class="role-grid">
+            <span class="role-date">Jun 2022</span>
+            <span class="role-main">
+              <span class="role-title">Clinical QC Intern, Pathology &amp; Microbiology</span>
+              <span class="role-org">BSES MG Hospital · Mumbai, IN</span>
+              <span class="role-sum">Quality control across four clinical disciplines, plus microbial culture and identification.</span>
+            </span>
+            <span class="chev" aria-hidden="true"></span>
+          </span></summary>
+          <div class="role-body" id="body-bses">
+            <ul class="bullets">
+              <li>Managed quality control workflows for 200+ patient samples across immunology, serology, haematology and biochemistry, with GLP-compliant documentation.</li>
+              <li>Cultured, isolated and identified bacterial and other pathogenic organisms using aseptic technique, differential staining and biochemical tests.</li>
+              <li>Communicated with patients about procedures and turnaround times.</li>
+            </ul>
+          </div>
+          </details>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- THESIS -->
+  <section id="thesis">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="label">Research</span>
+        <h2>MSc thesis</h2>
+        <p>What the project asked, how it was set up, and the methods I carried out.</p>
+      </div>
+      <div class="thesis-card">
+        <div style="display:grid;gap:8px">
+          <h3>Cardiovascular ageing phenotype and <span style="white-space:nowrap">glyoxalase-1</span> (GLO1) activity in a C57BL/6J mouse model</h3>
+          <p class="meta">CARIM (Cardiovascular Research Institute Maastricht), Department of Internal Medicine, Maastricht University · Sep 2025 to Jun 2026</p>
+        </div>
+        <div class="tabs">
+          <input class="tab-radio" type="radio" name="thesis-tab" id="r-t-question" checked><input class="tab-radio" type="radio" name="thesis-tab" id="r-t-design"><input class="tab-radio" type="radio" name="thesis-tab" id="r-t-methods">
+          <div class="tablist">
+            <label class="tab" for="r-t-question">Background</label>
+            <label class="tab" for="r-t-design">Study design</label>
+            <label class="tab" for="r-t-methods">Methods and my role</label>
+          </div>
+
+          <div class="panel" id="p-question">
+            <div class="pathway" role="img" aria-label="Glucose metabolism produces methylglyoxal, which forms advanced glycation end-products, which stiffen vessels and drive inflammation">
+              <span class="node">Glucose metabolism</span><span class="op" aria-hidden="true">→</span>
+              <span class="node">Methylglyoxal (MGO)</span><span class="op" aria-hidden="true">→</span>
+              <span class="node">AGEs</span><span class="op" aria-hidden="true">→</span>
+              <span class="node">Vessel stiffening, inflammation</span>
+            </div>
+            <div class="pathway"><span class="node key">GLO1</span><span class="op">detoxifies MGO before it can form AGEs</span></div>
+            <p>Methylglyoxal is a reactive by-product of glucose metabolism. When it builds up, it forms advanced glycation end-products (AGEs), which stiffen blood vessels and drive inflammation. The body's main defence against it is the enzyme GLO1.</p>
+            <p>The project asked whether aged mice show a measurable cardiovascular ageing phenotype, and whether that phenotype goes along with changes in GLO1 activity in specific tissues.</p>
+          </div>
+
+          <div class="panel panel-wide" id="p-design">
+            <div class="groups">
+              <div class="group"><span class="label">Group 1</span><span class="g-name">Young</span><span class="meta">8-week-old male C57BL/6J mice</span></div>
+              <div class="group"><span class="label">Group 2</span><span class="g-name">Aged</span><span class="meta">18-month-old male C57BL/6J mice</span></div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>What was measured</th><th>Method</th><th>Where</th></tr></thead>
+                <tbody>
+                  <tr><td>Cardiac structure and function</td><td>Echocardiography</td><td>In vivo</td></tr>
+                  <tr><td>Arterial stiffness</td><td>Pulse propagation velocity (reference measure), aortic distensibility</td><td>In vivo</td></tr>
+                  <tr><td>Skeletal muscle microvascular perfusion</td><td>Contrast-enhanced ultrasound, before and during a hyperinsulinaemic-euglycaemic clamp</td><td>In vivo</td></tr>
+                  <tr><td>GLO1 enzyme activity</td><td>Spectrophotometric activity assay</td><td>Heart, aorta, kidney, liver, skeletal muscle, adipose tissue, perivascular adipose tissue</td></tr>
+                  <tr><td>Tissue structure</td><td>Histology</td><td>Fixed tissue sections</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="panel" id="p-methods">
+            <ol class="steps">
+              <li class="step"><div><h4>In vivo measurements <span class="who">Observed</span></h4><p>Echocardiography, contrast-enhanced ultrasound and hyperinsulinaemic-euglycaemic clamp studies, which produced the imaging data I then analysed.</p></div></li>
+              <li class="step"><div><h4>Image analysis <span class="who">Performed</span></h4><p>Validated 200+ datasets before analysis. Measured cardiac structure and function, pulse propagation velocity and aortic distensibility in VevoLab. Analysed contrast-enhanced ultrasound sequences in ImageJ/Fiji, fitting replenishment curves to estimate microvascular blood volume and flow.</p></div></li>
+              <li class="step"><div><h4>Tissue preparation <span class="who">Performed</span></h4><p>Ground snap-frozen tissue under liquid nitrogen and prepared lysates. Tracked, stored at −80&nbsp;°C and retrieved 130+ specimens with full traceability.</p></div></li>
+              <li class="step"><div><h4>Protein and enzyme assays <span class="who">Performed</span></h4><p>Quantified protein by BCA assay and measured GLO1 activity spectrophotometrically at 240&nbsp;nm on a microplate reader, across 150+ tissue samples.</p></div></li>
+              <li class="step"><div><h4>Histology <span class="who">Performed</span></h4><p>Tissue processing, paraffin embedding and sectioning.</p></div></li>
+              <li class="step"><div><h4>Statistics <span class="who">Performed</span></h4><p>All analysis in GraphPad Prism and Excel: Shapiro-Wilk normality testing, ROUT outlier detection, unpaired t-tests or Mann-Whitney tests depending on the distribution, and Pearson correlation with linear regression.</p></div></li>
+            </ol>
+          </div>
+        </div>
+        <p class="note">The results of this project are unpublished, so they are not shared here.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="label">6 areas</span>
+        <h2>Skills</h2>
+        <p>Select an area to see the skills in it.</p>
+      </div>
+      <div class="tabs">
+        <input class="tab-radio" type="radio" name="skill-tab" id="r-s-bio" checked><input class="tab-radio" type="radio" name="skill-tab" id="r-s-clin"><input class="tab-radio" type="radio" name="skill-tab" id="r-s-res"><input class="tab-radio" type="radio" name="skill-tab" id="r-s-data"><input class="tab-radio" type="radio" name="skill-tab" id="r-s-qa"><input class="tab-radio" type="radio" name="skill-tab" id="r-s-pro">
+        <div class="tablist">
+            <label class="tab" for="r-s-bio">Bioprocess &amp; cell culture</label>
+            <label class="tab" for="r-s-clin">Clinical lab &amp; microbiology</label>
+            <label class="tab" for="r-s-res">Research techniques &amp; samples</label>
+            <label class="tab" for="r-s-data">Data, imaging &amp; statistics</label>
+            <label class="tab" for="r-s-qa">Quality &amp; compliance</label>
+            <label class="tab" for="r-s-pro">Professional</label>
+        </div>
+        <div class="panel panel-wide" id="sp-bio">
+          <ul class="skill-list">
+            <li>Mammalian cell culture (monoclonal antibody-producing cells)</li><li>Upstream processing</li><li>Fed-batch bioprocessing</li><li>Scale-up from shake flask through 1 to 10&nbsp;L bioreactors to 50&nbsp;L</li><li>Media, feed and inoculum preparation</li><li>Bioreactor set-up, sterilisation and operation</li><li>Probe calibration</li><li>Process control: pH, temperature, dissolved oxygen, aeration, agitation</li><li>Viability, osmolality and metabolite monitoring</li><li>Aseptic technique</li><li>BSL2 laboratory work</li>
+          </ul>
+        </div>
+        <div class="panel panel-wide" id="sp-clin">
+          <ul class="skill-list">
+            <li>Patient sample receipt, processing and registration</li><li>Haematology</li><li>Serology</li><li>Clinical biochemistry</li><li>Immunology</li><li>Peripheral blood morphology</li><li>Transfusion cross-matching</li><li>Urinalysis</li><li>Bacterial culture, isolation and identification</li><li>Differential staining (Gram)</li><li>Biochemical identification tests</li><li>Handling pathogenic microorganisms</li>
+          </ul>
+        </div>
+        <div class="panel panel-wide" id="sp-res">
+          <ul class="skill-list">
+            <li>Tissue lysate preparation (liquid nitrogen grinding)</li><li>BCA protein assay</li><li>Enzyme activity assays (GLO1)</li><li>UV spectrophotometry</li><li>Microplate reader assays</li><li>Histology: processing, paraffin embedding, sectioning</li><li>−80&nbsp;°C sample storage and retrieval</li><li>Specimen tracking and traceability</li><li>Reagent and consumable inventory</li>
+          </ul>
+        </div>
+        <div class="panel panel-wide" id="sp-data">
+          <ul class="skill-list">
+            <li>Echocardiography analysis (VevoLab)</li><li>Arterial stiffness: pulse wave velocity, distensibility</li><li>Contrast-enhanced ultrasound analysis (ImageJ/Fiji)</li><li>Curve fitting (microvascular replenishment)</li><li>Data validation and review</li><li>Process data analysis</li><li>GraphPad Prism</li><li>Normality testing (Shapiro-Wilk)</li><li>Outlier detection (ROUT)</li><li>Unpaired t-test, Mann-Whitney test</li><li>Pearson correlation, linear regression</li><li>Microsoft Excel, Word, PowerPoint</li>
+          </ul>
+        </div>
+        <div class="panel panel-wide" id="sp-qa">
+          <ul class="skill-list">
+            <li>GMP</li><li>GLP</li><li>ISO 9001 quality systems</li><li>SOP writing and review</li><li>Batch manufacturing records</li><li>Deviation identification and escalation</li><li>CAPA</li><li>Root cause analysis</li><li>Non-conformance handling</li><li>Environmental monitoring</li><li>Equipment calibration, troubleshooting and maintenance</li><li>Data integrity and audit-ready documentation</li>
+          </ul>
+        </div>
+        <div class="panel panel-wide" id="sp-pro">
+          <ul class="skill-list">
+            <li>Training new lab members</li><li>Planning multi-phase studies</li><li>Cross-departmental collaboration</li><li>Scientific presentation</li><li>Scientific writing</li><li>Patient communication</li><li>Working in international teams</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LANGUAGES -->
+  <section id="languages">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="label">6 languages</span>
+        <h2>Languages</h2>
+      </div>
+      <ul class="langs">
+        <li class="lang"><div class="lang-top"><span class="lang-name">English</span><span class="lang-level">Fluent</span></div><div class="meter" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></div><span class="lang-extra">IELTS&nbsp;8.0</span></li>
+        <li class="lang"><div class="lang-top"><span class="lang-name">Hindi</span><span class="lang-level">Native</span></div><div class="meter" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></div></li>
+        <li class="lang"><div class="lang-top"><span class="lang-name">Marathi</span><span class="lang-level">Native</span></div><div class="meter" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></div></li>
+        <li class="lang"><div class="lang-top"><span class="lang-name">French</span><span class="lang-level">Intermediate</span></div><div class="meter" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span></div></li>
+        <li class="lang"><div class="lang-top"><span class="lang-name">Dutch</span><span class="lang-level">Developing</span></div><div class="meter" aria-hidden="true"><span class="on"></span><span class="on"></span><span></span><span></span><span></span></div></li>
+        <li class="lang"><div class="lang-top"><span class="lang-name">Japanese</span><span class="lang-level">Developing</span></div><div class="meter" aria-hidden="true"><span class="on"></span><span class="on"></span><span></span><span></span><span></span></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="label">Education</span>
+        <h2>Education and certifications</h2>
+      </div>
+      <div class="edu">
+        <div class="edu-item">
+          <h3>MSc Biomedical Sciences</h3>
+          <p class="where">Maastricht University, the Netherlands</p>
+          <p class="detail">Specialisation: Inflammation and Pathophysiology. Includes a full-year research internship at CARIM.</p>
+          <p class="detail">Thesis: <a href="#thesis">Cardiovascular ageing phenotype and <span style="white-space:nowrap">glyoxalase-1</span> (GLO1) activity in a C57BL/6J mouse model</a></p>
+          <p class="meta"><b>GRE:</b> 322</p>
+        </div>
+        <div class="edu-item">
+          <h3>BTech Biotechnology</h3>
+          <p class="where">Vellore Institute of Technology, Tamil Nadu, India</p>
+          <p class="detail">Final-year project in upstream process development at IPCA Laboratories. Member of the Society for Biological Engineering (SBE) and the Rotaract Club.</p>
+        </div>
+        <div class="edu-item">
+          <p class="label" style="margin-bottom:4px">Certifications</p>
+          <ul class="certs">
+            <li><span class="issuer">KU LeuvenX</span><span>Vaccines: From Smallpox to Future Technologies</span></li>
+            <li><span class="issuer">HarvardX</span><span>MalariaX: Defeating Malaria</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEADERSHIP -->
+  <section id="leadership">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="label">Leadership</span>
+        <h2>International engagement</h2>
+      </div>
+      <div class="lead-card">
+        <h3>Youth Ambassador, Treaty of Middelburg</h3>
+        <p class="meta">Middelburg, the Netherlands · 2 and 3 May 2025 · 200 ambassadors from 50+ nationalities</p>
+        <p>One of 200 Youth Ambassadors brought together in Middelburg 80 years after the liberation at the end of the Second World War. Over two days we took part in the meetings and planning that produced the Youth Freedom Treaty, a call to action from young people inspired by President Roosevelt's Four Freedoms. It sets out goals and practical steps for protecting freedom and passing it on, and was presented publicly at the end of the event.</p>
+        <div class="contact-row">
+          <a class="btn primary ext" href="https://www.youthfreedomtreaty.com/files/Treaty%20of%20Middelburg%20-%20May%202025.pdf?v=1" target="_blank" rel="noopener noreferrer">Read the treaty</a>
+          <a class="btn ext" href="https://www.youthfreedomtreaty.com/" target="_blank" rel="noopener noreferrer">Youth Freedom Treaty website</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="label">Contact</span>
+        <h2>Get in touch</h2>
+        <p>Available immediately. Based in Maastricht and open to relocation.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-item">
+          <span class="label">Email</span>
+          <span class="contact-value" id="email-value">tanvirele02@gmail.com</span>
+          <div class="contact-row">
+            <button class="btn primary js-only" id="copy-email" type="button" hidden>Copy email address</button>
+            <a class="btn" href="mailto:tanvirele02@gmail.com" target="_blank" rel="noopener">Email me</a>
+          </div>
+          <span class="copied" id="copy-status" aria-live="polite"></span>
+        </div>
+        <div class="contact-item">
+          <span class="label">LinkedIn</span>
+          <span class="contact-value">Professional profile</span>
+          <div class="contact-row"><a class="btn primary ext" href="https://www.linkedin.com/in/tanvi-rele-897ba0221/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a class="btn cv-btn" href="https://drive.google.com/uc?export=download&amp;id=1f9zp9bR7ijim_uSSCD3S-7JJOLHsbGJw" target="_blank" rel="noopener noreferrer">Download CV (PDF)</a></div>
+          <span class="copied cv-status" aria-live="polite"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">Tanvi Rele · Maastricht, the Netherlands</div>
+</footer>
+
+<script>
+(function () {
+  // Everything essential (menu links, role details, tabs) works without this script.
+  // The script only adds extras: smooth offset scrolling, cards that open roles,
+  // expand all, copy email, the CV download and the menu highlight.
+  var nav = document.getElementById('site-nav');
+  var links = document.getElementById('nav-links');
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function show(el, on) { if (el) el.hidden = !on; }
+  document.querySelectorAll('.js-only').forEach(function (el) { show(el, true); });
+
+  function scrollToEl(el) {
+    if (!el) return;
+    var offset = nav.getBoundingClientRect().height + 12;
+    var y = el.getBoundingClientRect().top + window.pageYOffset - offset;
+    window.scrollTo({ top: Math.max(0, y), behavior: reduce ? 'auto' : 'smooth' });
+  }
+
+  // Roles (native <details>)
+  var roles = Array.prototype.slice.call(document.querySelectorAll('.role-details'));
+  var toggleAll = document.getElementById('toggle-all');
+  function syncToggleAll() {
+    var allOpen = roles.every(function (d) { return d.open; });
+    toggleAll.textContent = allOpen ? 'Collapse all' : 'Expand all';
+  }
+  roles.forEach(function (d) { d.addEventListener('toggle', syncToggleAll); });
+  toggleAll.addEventListener('click', function () {
+    var allOpen = roles.every(function (d) { return d.open; });
+    roles.forEach(function (d) { d.open = !allOpen; });
+    syncToggleAll();
+  });
+  function openRoles(ids) {
+    ids.forEach(function (id) {
+      var li = document.getElementById(id);
+      var d = li && li.querySelector('details');
+      if (d) d.open = true;
+    });
+    syncToggleAll();
+    scrollToEl(document.getElementById(ids[0]));
+  }
+
+  // In-page links: scroll with room for the sticky menu; cards also open their roles
+  var pinned = '', pinnedUntil = 0;
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (!a) return;
+    var id = a.getAttribute('href').slice(1);
+    var open = a.getAttribute('data-open');
+    var target = id === 'top' ? document.body : document.getElementById(id);
+    if (!target && !open) return;
+    e.preventDefault();
+    if (links.querySelector('a[href="#' + id + '"]')) { pinned = id; pinnedUntil = Date.now() + 1200; } else { pinned = ''; }
+    if (open) { openRoles(open.split(',')); updateActive(); return; }
+    if (id === 'top') window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+    else scrollToEl(target);
+    updateActive();
+  });
+
+  // Copy email
+  var copyBtn = document.getElementById('copy-email');
+  var status = document.getElementById('copy-status');
+  var emailEl = document.getElementById('email-value');
+  function legacyCopy(text) {
+    var x = window.pageXOffset, y = window.pageYOffset;
+    var ta = document.createElement('textarea');
+    ta.value = text; ta.setAttribute('readonly', '');
+    // Placed beside the button so focusing it never moves the page
+    ta.style.position = 'absolute'; ta.style.opacity = '0'; ta.style.width = '1px'; ta.style.height = '1px';
+    ta.style.padding = '0'; ta.style.border = '0'; ta.style.pointerEvents = 'none';
+    copyBtn.parentNode.appendChild(ta);
+    try { ta.focus({ preventScroll: true }); } catch (err) { ta.focus(); }
+    ta.select();
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch (err) { ok = false; }
+    ta.parentNode.removeChild(ta);
+    try { copyBtn.focus({ preventScroll: true }); } catch (err) {}
+    if (window.pageXOffset !== x || window.pageYOffset !== y) window.scrollTo(x, y);
+    return ok;
+  }
+  copyBtn.addEventListener('click', function () {
+    var text = emailEl.textContent.trim();
+    var done = false;
+    function success() { if (done) return; done = true; status.classList.remove('warn'); status.textContent = 'Copied: ' + text; }
+    function fallback() {
+      if (done) return; done = true;
+      try {
+        var range = document.createRange(); range.selectNodeContents(emailEl);
+        var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range);
+      } catch (err) {}
+      status.classList.add('warn');
+      status.textContent = 'Address selected. Press Ctrl+C (or Cmd+C) to copy it.';
+    }
+    if (legacyCopy(text)) { success(); return; }
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(success, fallback);
+        setTimeout(fallback, 800);
+      } else { fallback(); }
+    } catch (err) { fallback(); }
+  });
+
+  // Menu highlight
+  var navAnchors = Array.prototype.slice.call(links.querySelectorAll('a'));
+  var sections = Array.prototype.slice.call(document.querySelectorAll('section[id]'));
+  var ticking = false;
+  function updateActive() {
+    ticking = false;
+    var line = Math.max(nav.getBoundingClientRect().height + 80, window.innerHeight * 0.45);
+    var current = '';
+    sections.forEach(function (sec) { if (sec.getBoundingClientRect().top <= line) current = sec.id; });
+    var atBottom = window.innerHeight + window.pageYOffset >= document.documentElement.scrollHeight - 4;
+    if (atBottom && window.pageYOffset > 0) current = sections[sections.length - 1].id;
+    if (pinned && Date.now() < pinnedUntil) current = pinned;
+    navAnchors.forEach(function (a) { a.classList.toggle('active', a.getAttribute('href') === '#' + current); });
+  }
+  window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(updateActive); } }, { passive: true });
+  window.addEventListener('resize', updateActive);
+  updateActive();
+
+  // CV download: both buttons are plain links to the CV on Google Drive,
+  // which open for every visitor, with or without this script.
+
+  // Open a role straight from the link, e.g. ...#role-ipca
+  var h = (location.hash || '').slice(1);
+  if (/^role-/.test(h) && document.getElementById(h)) openRoles([h]);
+})();
+</script>
+
+</body></html>
